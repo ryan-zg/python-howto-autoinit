@@ -41,7 +41,8 @@ KEYWORD_XSHELL = "Session Name"
 # xshell的日志文件路径
 # 注意session的名字尽量避免中文，否则程序会因无法解析而报错，不好处理
 LOG_FILE_PATH_XSHELL = r'D:\DIC2024\XShell-log\Connection.log'
-
+# 图片路径，用于识别选择哪一个虚拟机
+TEMPLATE_PATH_VM = "../photoes/vm.jpg"
 
 """
 其他待定

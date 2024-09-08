@@ -13,6 +13,7 @@ import pyautogui
 from resources import *
 from pynput.keyboard import Key, Controller  # 导入按键控制
 import paramiko
+from xhell import select_vm
 
 # 创建一个键盘控制对象
 KEYBOARD = Controller()
@@ -70,9 +71,9 @@ def open_xshell():
     """打开Xshell并连接vm"""
     subprocess.Popen(Xshell_EXE)
     time.sleep(5)
-    # todo 因为我的xshell中只有一个虚拟机，所以这里直接回车，以后再改
-    # 按下回车，并确认要连接的虚拟机
-    key_press_down(0.1, Key.enter)
+    # 调用模板匹配并选择虚拟机
+    select_vm(TEMPLATE_PATH_VM)
+
 
 
 def is_idea_running(exe_name):
