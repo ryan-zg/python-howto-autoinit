@@ -13,6 +13,7 @@ import pyautogui
 from resources import *
 from pynput.keyboard import Key, Controller  # 导入按键控制
 import paramiko
+from pojo import FolderSelection
 from xhell import select_vm
 
 # 创建一个键盘控制对象
@@ -36,19 +37,19 @@ def mouse_click(x=WIDTH/2, y=HEIGHT/2, button='left', times=0.1):
     time.sleep(times)
 
 
-def open_idea_and_run_project():
+def open_idea_and_run_project(idea_path):
     """打开idea"""
-    subprocess.Popen([IDEA_EXT, IDEA_HMDP_PATH])
+    subprocess.Popen([IDEA_EXT, idea_path])
     # todo 运行项目，可使用 Groovy 脚本
     # ......
 
 
-def open_vm_and_run_project():
+def open_vm_and_run_project(vm_path):
     """运行vm并打开虚拟机"""
 
     # 打开vm，并打开虚拟机
-    subprocess.Popen([VM_EXE, VM_DOCKER_PATH])
-    time.sleep(15)
+    subprocess.Popen([VM_EXE, vm_path])
+    time.sleep(10)
     # 键盘按下ctrl + b 并停顿0.5秒抬起，以运行虚拟机
     key_press_down(0.5, Key.ctrl, "b")
     """
@@ -145,26 +146,46 @@ def check_vm_connection():
         time.sleep(5)
 
 
-def run():
-    """启动"""
-
+def run_idea(idea_path):
     # 每次程序开始运行时清空日志
     reset_log_file(LOG_FILE_PATH_IDEA)
     # 启动 IDEA
-    open_idea_and_run_project()
+    open_idea_and_run_project(idea_path)
     # 检查是否加载完成
     check('idea', LOG_FILE_PATH_IDEA, KEYWORD_IDEA)
 
+
+def run_vm(vm_path):
     # 启动 VM 并打开虚拟机
-    open_vm_and_run_project()
+    open_vm_and_run_project(vm_path)
     # 检查虚拟机是否完成启动
     check_vm_connection()
 
+
+def run_xshell(pro_name):
     # 每次程序开始运行时清空日志
     reset_log_file(LOG_FILE_PATH_XSHELL)
     # 启动 XSHELL
     open_xshell()
     # 检查是否加载完成
-    check('xshell', LOG_FILE_PATH_XSHELL, KEYWORD_XSHELL)
+    check('xshell', LOG_FILE_PATH_XSHELL, pro_name)
+
+
+def run(folder_selections: list[FolderSelection]):
+
+    """启动"""
+    for item in folder_selections:
+        if item.get_software() == "IDEA":
+            run_idea(item.get_path())
+        elif item.get_software() == "VMware":
+            run_vm(item.get_path())
+        elif item.get_software() == "XShell":
+            run_xshell(item.get_pro_name())
+
+
+
+
+
+
 
 
