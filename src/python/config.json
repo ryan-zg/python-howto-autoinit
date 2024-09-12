@@ -1,0 +1,26 @@
+[
+    {
+        "select_type": "文件夹",
+        "path": "D:/VUE/dkd-vue",
+        "software": "VScode",
+        "pro_name": ""
+    },
+    {
+        "select_type": "文件夹",
+        "path": "D:/IdeaWork/dkd-parent",
+        "software": "IDEA",
+        "pro_name": ""
+    },
+    {
+        "select_type": "文件",
+        "path": "C:/dowmload_app_vm/centos_dic/new2024_06_05for_learn/CentOS 7 64 位.vmx",
+        "software": "VMware",
+        "pro_name": ""
+    },
+    {
+        "select_type": "文件",
+        "path": "",
+        "software": "XShell",
+        "pro_name": "vm"
+    }
+]

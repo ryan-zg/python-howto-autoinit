@@ -13,7 +13,6 @@ import pyautogui
 from resources import *
 from pynput.keyboard import Key, Controller  # 导入按键控制
 import paramiko
-from pojo import FolderSelection
 from xhell import select_vm
 
 # 创建一个键盘控制对象
@@ -114,11 +113,12 @@ def check(exe_name, log_file_path, keyword):
         if is_idea_running(exe_name):
             if check_log_for_completion(log_file_path, keyword):
                 print(exe_name + "完成加载")
-                break
+                return True
             else:
                 print(exe_name + "项目正在加载...")
         else:
             print(exe_name + "没有在运行中...")
+            return False
         time.sleep(5)
 
 
@@ -147,6 +147,9 @@ def check_vm_connection():
 
 
 def run_idea(idea_path):
+    # 检查是否加载完成
+    if check('idea', LOG_FILE_PATH_IDEA, KEYWORD_IDEA):
+        return
     # 每次程序开始运行时清空日志
     reset_log_file(LOG_FILE_PATH_IDEA)
     # 启动 IDEA
@@ -163,6 +166,9 @@ def run_vm(vm_path):
 
 
 def run_xshell(pro_name):
+    # 检查是否加载完成
+    if check('xshell', LOG_FILE_PATH_XSHELL, KEYWORD_IDEA):
+        return
     # 每次程序开始运行时清空日志
     reset_log_file(LOG_FILE_PATH_XSHELL)
     # 启动 XSHELL
@@ -171,18 +177,30 @@ def run_xshell(pro_name):
     check('xshell', LOG_FILE_PATH_XSHELL, pro_name)
 
 
-def run(folder_selections: list[FolderSelection]):
+def run_vscode(vs_path):
+    """运行vs"""
+    # todo 判断项目是否加载完成
+    subprocess.Popen([VSCODE_EXE, vs_path])
 
+
+
+def run(data):
+
+    # todo 耦合
     """启动"""
-    for item in folder_selections:
-        if item.get_software() == "IDEA":
-            run_idea(item.get_path())
-        elif item.get_software() == "VMware":
-            run_vm(item.get_path())
-        elif item.get_software() == "XShell":
-            run_xshell(item.get_pro_name())
-
-
+    for item in data:
+        if item["software"] == "IDEA":
+            # print("IDEA")
+            run_idea(item["path"])
+        elif item["software"] == "VMware":
+            # print("VM")
+            run_vm(item["path"])
+        elif item["software"] == "XShell":
+            # print("XSHELL")
+            run_xshell(item["pro_name"])
+        elif item["software"] == "VScode":
+            # print("VSCODE")
+            run_vscode(item["path"])
 
 
 
