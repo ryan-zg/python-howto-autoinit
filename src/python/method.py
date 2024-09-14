@@ -13,7 +13,7 @@ import pyautogui
 from resources import *
 from pynput.keyboard import Key, Controller  # 导入按键控制
 import paramiko
-from xhell import select_vm
+from xshell import select_vm
 
 # 创建一个键盘控制对象
 KEYBOARD = Controller()
