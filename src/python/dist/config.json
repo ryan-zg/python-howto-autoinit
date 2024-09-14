@@ -1,0 +1,14 @@
+[
+    {
+        "select_type": "文件夹",
+        "path": "D:/IdeaWork/dkd-parent",
+        "software": "IDEA",
+        "pro_name": ""
+    },
+    {
+        "select_type": "文件夹",
+        "path": "D:/VUE/dkd-vue",
+        "software": "VScode",
+        "pro_name": ""
+    }
+]

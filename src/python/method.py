@@ -181,7 +181,7 @@ def run_vscode(vs_path):
     """运行vs"""
     # todo 判断项目是否加载完成
     subprocess.Popen([VSCODE_EXE, vs_path])
-
+    time.sleep(5)
 
 
 def run(data):

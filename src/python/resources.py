@@ -46,16 +46,16 @@ KEYWORD_XSHELL = "Session Name"
 # xshell的日志文件路径
 # 注意session的名字尽量避免中文，否则程序会因无法解析而报错，不好处理
 LOG_FILE_PATH_XSHELL = r'D:\DIC2024\XShell-log\Connection.log'  ###
-# 图片路径，用于识别选择哪一个虚拟机
+# 图片路径，用于识别选择哪一个虚拟机。不要使用相对路径，为了打包后出现未知错误
 # 要连接的虚拟机名称要与输入框输入的名称一致，这里的图片名称为了区分，尽量都一致就对了
-TEMPLATE_PATH_VM = "../photoes/vm.jpg"  ###
+TEMPLATE_PATH_VM = r"D:\PythonWork\auto-init\src\photoes\vm.jpg"  ###
 
 
 """
 VScode
 """
 # vs启动项
-VSCODE_EXE = r"D:\download_app_2024\VS Code\Code.exe"
+VSCODE_EXE = r"D:\download_app_2024\VS Code\Code.exe" ###
 
 
 """
